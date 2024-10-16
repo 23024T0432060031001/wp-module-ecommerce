@@ -16,6 +16,7 @@ export function YITHPlugins({ wpModules }) {
   const [isOpen, setIsOpen] = useState(false);
   const [pluginName, setPluginName] = useState("");
   const [yithProducts, setYithProducts] = useState([]);
+  const hasSolution = NewfoldRuntime.hasCapability("hasSolution");
   let anyPluginActive = 0;
   const [yithPluginsMap, setYithPluginsMap] = useState(new Map([
     [
@@ -128,9 +129,9 @@ export function YITHPlugins({ wpModules }) {
             "Unlock the full power of your plan with access to a range of exclusive WooCommerce tools powered by \nYITH. Enhance your store and keep your customers coming back for more!",
             "wp-module-ecommerce"
           )}
-          <Button as="a" href={myPluginsAndToolsPageLink} className="nfd-button nfd-button--secondary nfd-flex  nfd-self-end nfd-ml-auto">
-            {__( "View all Commerce tools", "wp-module-ecommerce" )}
-          </Button>
+          {hasSolution && (<Button as="a" href={myPluginsAndToolsPageLink} className="nfd-button nfd-button--secondary nfd-flex  nfd-self-end nfd-ml-auto">
+            {__( "View all your plugins and tools", "wp-module-ecommerce" )}
+          </Button>)}
         </div>
       </div>
       <Section.Content className={"nfd-pt-4 nfd-pl-4 nfd-pr-4"}>
