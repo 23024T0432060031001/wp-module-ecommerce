@@ -65,8 +65,8 @@ export const wpSolutionsPromotedPluginsList = [
                             description: "Start increasing your search result rankings today.",
                             buttonText: "Improve Your Search Ranking",
                             name:"WordPress SEO",
-                            plsSlug: "wp-seo",                            
-                            plsProviderName: "yoast",
+                            plsSlug: 'wp-seo',                            
+                            plsProviderName: "yoast",                            
                             download: "https://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip",
                             basename: "wordpress-seo/wp-seo.php",
                             url: "admin.php?page=wpseo_dashboard#top#first-time-configuration"
@@ -80,8 +80,7 @@ export const wpSolutionsPromotedPluginsList = [
                             plsProviderName: "automattic",
                             download: "https://downloads.wordpress.org/plugin/sensei-lms.latest-stable.zip",
                             basename: "sensei-lms/sensei-lms.php",
-                            url: "post-new.php?post_type=course"
-                             
+                            url: "post-new.php?post_type=course"                             
                         },
                         {
                             title: "ADD AN AFFILIATE PROGRAM",
@@ -123,8 +122,8 @@ export const wpSolutionsPromotedPluginsList = [
                             description: "Start increasing your search result rankings today.",
                             buttonText: "Improve Your Search Ranking",
                             name: "Yoast SEO",
-                            plsSlug: "wp-seo",                            
-                            plsProviderName: "yoast",
+                            plsSlug: 'wp-seo',                            
+                            plsProviderName: "yoast",                            
                             download: "https://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip",
                             basename: "wordpress-seo/wp-seo.php",
                             url: "admin.php?page=wpseo_dashboard#top#first-time-configuration"
@@ -181,7 +180,7 @@ export const wpSolutionsPromotedPluginsList = [
                             description: "Start increasing your search result rankings today.",
                             buttonText: "Improve Your Search Ranking",
                             name: "Yoast SEO",
-                            plsSlug: "wp-seo",                            
+                            plsSlug: 'wp-seo',                            
                             plsProviderName: "yoast",
                             download: "https://downloads.wordpress.org/plugin/wordpress-seo.latest-stable.zip",
                             basename: "wordpress-seo/wp-seo.php",

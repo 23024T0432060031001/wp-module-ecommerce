@@ -29,7 +29,7 @@ export function WPSolutionsBanner() {
         "nfd_slug_wonder_cart",
         () =>
           PluginsSdk.queries
-        .status("nfd_slug_wonder_cart", "sensei-lms", "wp-seo", "yith-woocommerce-affiliates-premium", "yith-woocommerce-booking-premium", "yith-woocommerce-points-and-rewards-premium", "yith-woocommerce-wishlist-premium", "yith-woocommerce-advanced-reviews-premium", "yith-woocommerce-dynamic-pricing-and-discounts")
+            .status("nfd_slug_wonder_cart", "sensei-lms", "wp-seo", "yith-woocommerce-affiliates-premium", "yith-woocommerce-booking-premium", "yith-woocommerce-points-and-rewards-premium", "yith-woocommerce-wishlist-premium", "yith-woocommerce-advanced-reviews-premium", "yith-woocommerce-dynamic-pricing-and-discounts")        
             .then(res => {                
                 setPluginActiveStatusArray(res?.details)
             }),
@@ -96,13 +96,13 @@ export function WPSolutionsBanner() {
                                      {/* className="nfd-flex nfd-flex-row nfd-flex-wrap">                 */}
                                         {
                                             solutionsCards?.map((details, index) => {                                                
-                                                return (<div key="index" className={classNames("max-[950px]:nfd-col-span-3", "nfd-flex nfd-flex-col nfd-bg-[#F1F5F7] nfd-p-6 nfd-rounded-lg nfd-border nfd-border-[#E2E8F0] nfd-box-content", `${ index === 0 || index === 3 ? 'nfd-col-span-1': 'nfd-col-span-2'}`)}>                        
+                                                return (<div key={`card-${index}`} className={classNames("max-[950px]:nfd-col-span-3", "nfd-flex nfd-flex-col nfd-bg-[#F1F5F7] nfd-p-6 nfd-rounded-lg nfd-border nfd-border-[#E2E8F0] nfd-box-content", `${ index === 0 || index === 3 ? 'nfd-col-span-1': 'nfd-col-span-2'}`)}>                        
                                                             <h2 className="nfd-text-[#0F172A] nfd-text-lg nfd-leading-5 nfd-font-semibold nfd-mb-4">
                                                                 { __(`${details['title']}`,"wp-module-ecommerce") }
                                                             </h2>
                                                             <p className="nfd-text-[#0F172A] nfd-text-lg nfd-leading-5 nfd-font-normal nfd-mb-10">
                                                                 { __(`${details['description']}`,"wp-module-ecommerce") }                                                                
-                                                            </p>                                                            
+                                                            </p>   
                                                             {   
                                                                 //For type plugin
                                                                 details.plsSlug !== "" ? 
@@ -142,6 +142,7 @@ export function WPSolutionsBanner() {
                                                                                 data-nfd-installer-pls-provider={details.plsProviderName}                                                                             
                                                                                 data-nfd-installer-plugin-name={details.name}
                                                                                 data-nfd-installer-plugin-url={url}
+                                                                                data-nfd-installer-plugin-storage-key={details.storageKey}
                                                                                 isLoading={status==="installing"}
                                                                                 >
                                                                                     { __(`${details['buttonText']}`,"wp-module-ecommerce") }                                                               
@@ -153,13 +154,14 @@ export function WPSolutionsBanner() {
                                                                             details.download ?
                                                                             (
                                                                                 <Button 
-                                                                                key={`btn-${index}`}
+                                                                               key={`btn-${index}`}
                                                                                 className="nfd-button nfd-button--primary nfd-mt-9 nfd-mt-auto nfd-self-start" 
                                                                                 as="button" 
                                                                                 data-nfd-installer-plugin-activate={true}
                                                                                 data-nfd-installer-plugin-name={details.name}
                                                                                 data-nfd-installer-download-url={details.download}
                                                                                 data-nfd-installer-plugin-url={url}
+                                                                                data-nfd-installer-plugin-storage-key={details.storageKey}
                                                                                 isLoading={status==="installing"}
                                                                                 >
                                                                                     { __(`${details['buttonText']}`,"wp-module-ecommerce") }                                                               
@@ -179,6 +181,41 @@ export function WPSolutionsBanner() {
                                                                     </Button>)  
 
                                                             }
+
+                                                            {/* {   
+                                                                details.plsSlug !== "" ? 
+                                                                Object.entries(pluginActiveStatusArray).map(([slug, { status, url }]) => (
+                                                                    details.plsSlug === slug ?
+                                                                        status === "active" ?                                                                         
+                                                                        <Button className="nfd-button nfd-button--primary nfd-mt-9 nfd-mt-auto nfd-self-start" as="a" href={url}>
+                                                                            { __(`${details['buttonText']}`,"wp-module-ecommerce") }                                                               
+                                                                            <RightArrow className="nfd-mt-2.5" />
+                                                                        </Button>        
+                                                                        :
+                                                                        status === "need_to_install" || "installing" ? 
+                                                                        <Button 
+                                                                        className="nfd-button nfd-button--primary nfd-mt-9 nfd-mt-auto nfd-self-start" 
+                                                                        as="button" 
+                                                                        data-nfd-installer-plugin-slug={slug} 
+                                                                        data-nfd-installer-plugin-provider={details.plsProviderName} 
+                                                                        data-nfd-installer-plugin-activate={true}
+                                                                        data-nfd-installer-plugin-name={details.name}
+                                                                        data-nfd-installer-plugin-url={url}
+                                                                        data-nfd-installer-plugin-storage-key={details.storageKey}
+                                                                        isLoading={status==="installing"}
+                                                                        >
+                                                                            { status==="installing" ? __("Installing","wp-module-ecommerce") :  __("Install","wp-module-ecommerce") }                                                               
+                                                                            <RightArrow className="nfd-mt-2.5" />
+                                                                        </Button>  : null
+                                                                    :
+                                                                    null
+                                                                ))
+                                                                : 
+                                                                <Button className="nfd-button nfd-button--primary nfd-mt-9 nfd-mt-auto nfd-self-start" as="button" disabled={true}>
+                                                                    { __(`${details['buttonText']}`,"wp-module-ecommerce") }                                                               
+                                                                    <RightArrow className="nfd-mt-2.5" />
+                                                                </Button>
+                                                            } */}
                                                         </div>)   
                                             })
                                         }
